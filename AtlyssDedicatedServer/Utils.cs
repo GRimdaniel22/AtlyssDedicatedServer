@@ -11,7 +11,7 @@ public static class Utils
             seconds = 0;
             return false;
         }
-        var StoredSeconds = seconds
+        var StoredSeconds = seconds;
         const string regex = @"^\s*(?:([0-9]+)d)?\s*(?:([0-9]+)h)?\s*(?:([0-9]+)m)?\s*(?:([0-9]+)s)?\s*$";
         var restartInMatch = Regex.Match(text, regex);
         var hasDays = restartInMatch.Groups[1].Success;
