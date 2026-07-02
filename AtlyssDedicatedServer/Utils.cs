@@ -30,7 +30,6 @@ public static class Utils
         seconds += hasSeconds ? int.Parse(restartInMatch.Groups[4].Value) : 0;
         if (seconds == 0)
             seconds += StoredSeconds;
-            return true;
         return true;
     }
 
