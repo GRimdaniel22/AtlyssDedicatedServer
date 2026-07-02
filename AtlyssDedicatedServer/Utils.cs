@@ -11,7 +11,7 @@ public static class Utils
             seconds = 0;
             return false;
         }
-        
+        var StoredSeconds = seconds
         const string regex = @"^\s*(?:([0-9]+)d)?\s*(?:([0-9]+)h)?\s*(?:([0-9]+)m)?\s*(?:([0-9]+)s)?\s*$";
         var restartInMatch = Regex.Match(text, regex);
         var hasDays = restartInMatch.Groups[1].Success;
@@ -21,13 +21,16 @@ public static class Utils
         
         seconds = 0;
 
-        if (!restartInMatch.Success || !(hasDays || hasHours || hasMinutes || hasSeconds))
+        if (!restartInMatch.Success || !(hasDays || hasHours || hasMinutes || hasSeconds) || StoredSeconds >= 1)
             return false;
         
         seconds += hasDays ? int.Parse(restartInMatch.Groups[1].Value) * 86400 : 0;
         seconds += hasHours ? int.Parse(restartInMatch.Groups[2].Value) * 3600 : 0;
         seconds += hasMinutes ? int.Parse(restartInMatch.Groups[3].Value) * 60 : 0;
         seconds += hasSeconds ? int.Parse(restartInMatch.Groups[4].Value) : 0;
+        if (seconds == 0)
+            seconds += StoredSeconds;
+            return true;
         return true;
     }
 
