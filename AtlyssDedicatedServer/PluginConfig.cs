@@ -33,7 +33,7 @@ internal static class PluginConfig
         
         ServerName = file.Bind("ServerData", "ServerName", "ATLYSS Server", "Name to set when launching the server.").Value;
 
-        if (TryGetStringArgment(args, "-pve", out var serverName))
+        if (TryGetStringArgment(args, "-name", out var serverName))
             ServerName = serverName;
         
         if (ServerName.Length > 20)
